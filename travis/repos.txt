@@ -1,1 +1,1 @@
-chart-grafana
+chart-kubedns

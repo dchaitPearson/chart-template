@@ -13,14 +13,12 @@ do
   cp -a ecr ${repo}/travis
   cp -a script ${repo}/travis
   cp ../.gitignore ${repo}
-  cp ../.lgtm ${repo}
   cp ../Makefile ${repo}
   cp ../.travis.yml ${repo}
   cp version.sh ${repo}/travis
   cp start_minikube.sh ${repo}/travis
   cp setup_ssh.sh ${repo}/travis
   cp install_dependencies.sh ${repo}/travis
-  cp decrypt.sh ${repo}/travis
   (cd ${repo} && git status && git add . && git commit . -m "Update from chart-template repo: ${IMAGE_TEMPLATE_LAST_COMMIT}" || true && git push origin master)
   echo -e "FINISHED UPDATING ${repo}\n"
 done
