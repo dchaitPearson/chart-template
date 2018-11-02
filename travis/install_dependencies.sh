@@ -3,7 +3,6 @@
 
 set -e
 
-
 inspec_version="1.41.0"
 rocker_version="1.3.1"
 jq_version="1.5"
@@ -30,6 +29,13 @@ wget ${kubectl_install_url} -O /home/travis/bin/kubectl && chmod +x /home/travis
 wget ${minikube_install_url} -O /home/travis/bin/minikube && chmod +x /home/travis/bin/minikube
 wget ${helm_install_url} && tar -zxf ${helm_pkg} && mv linux-amd64/helm /home/travis/bin/helm && chmod +x /home/travis/bin/helm
 
+wget ${inspec_install_url} && sudo dpkg -i ${inspec_pkg}
+wget ${rocker_install_url} && tar -xzf ${rocker_pkg} && mv rocker /home/travis/bin/rocker && chmod +x /home/travis/bin/rocker
+wget ${jq_install_url} -O /home/travis/bin/jq && chmod +x /home/travis/bin/jq
+
+curl -Lo minikube ${minikube_install_url} && chmod +x minikube && sudo cp minikube /usr/local/bin/ && rm minikube
+curl -Lo kubectl ${kubectl_install_url} && chmod +x kubectl && sudo cp kubectl /usr/local/bin/ && rm kubectl
+
 #pip install ansible awscli
 pip install awscli
 
@@ -40,3 +46,17 @@ docker run -v /usr/local/bin:/target jpetazzo/nsenter
 aws ssm get-parameters --names "github_rw_key" --region eu-west-1 --with-decryption | jq -r ".Parameters[0].Value" > ~/.ssh/id_rsa
 echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 chmod 600 ~/.ssh/id_rsa
+
+
+
+
+
+
+
+
+
+
+
+
+
+
