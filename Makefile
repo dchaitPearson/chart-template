@@ -49,7 +49,7 @@ build:  ## building helm chart
 
 
 
-run:  ## run helm chart on minikube. You can change namespace according to your chart
+run:  ## run helm chart on minikube
 	@echo "Deploying helm chart"
 	@bash -c "helm install $(CURDIR)/$(CHART_PACKAGE) -n $(CHART_NAME) --namespace kube-system --set pipeline=$(PIPELINE)"
 
