@@ -7,8 +7,8 @@ set -e
 inspec_version="1.41.0"
 rocker_version="1.3.1"
 jq_version="1.5"
-minikube_version="v0.23.0"
-kubectl_version="v1.5.6"
+minikube_version="v0.30.0"
+kubectl_version="v1.10.9"
 helm_version="v2.9.1"
 
 inspec_pkg="inspec_${inspec_version}-1_amd64.deb"
