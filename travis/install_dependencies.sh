@@ -42,6 +42,9 @@ pip install awscli
 #install nsenter
 docker run -v /usr/local/bin:/target jpetazzo/nsenter
 
+#install socat
+sudo apt-get update && sudo apt-get install socat
+
 # Pull down a key from AWS for checkout out Github repos
 aws ssm get-parameters --names "github_rw_key" --region eu-west-1 --with-decryption | jq -r ".Parameters[0].Value" > ~/.ssh/id_rsa
 echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config

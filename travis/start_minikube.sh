@@ -58,3 +58,5 @@ kubectl get nodes --show-labels
 # temp fix for kubernetes 1.10 with minikube
 echo "kubectl delete deployment kube-dns -n kube-system"
 kubectl delete deployment kube-dns -n kube-system
+kubectl delete sa kube-dns -n kube-system
+kubectl delete clusterroles system:kube-dns -n kube-system
