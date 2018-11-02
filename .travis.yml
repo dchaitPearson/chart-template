@@ -1,0 +1,35 @@
+# WARNING: This file is deployed from template. Raise a pull request against chart-template to change.
+language: python
+dist: trusty
+sudo: false
+
+services:
+  - docker
+
+env:
+  global:
+    - REPO_NAME=$(echo ${TRAVIS_REPO_SLUG#*/})
+    - DOCKER_CHANGE=$(git diff --name-only $TRAVIS_COMMIT_RANGE | grep -i ^tests/ | wc -l)
+
+before_install:
+  - (cd ${TRAVIS_BUILD_DIR}/travis && ./decrypt.sh && cp ${TRAVIS_BUILD_DIR}/travis/credentials ~/.aws)
+  - pip install PyYAML
+
+install:
+  - git remote set-url origin git@github.com:pearsontechnology/${REPO_NAME}.git
+  - ${TRAVIS_BUILD_DIR}/travis/install_dependencies.sh
+  - if test $DOCKER_CHANGE != 0 ; then
+    ${TRAVIS_BUILD_DIR}/travis/build_testimage.sh ; fi
+  - ${TRAVIS_BUILD_DIR}/travis/setup_ssh.sh
+  - ${TRAVIS_BUILD_DIR}/travis/start_minikube.sh
+
+script:
+  - make
+
+after_success:
+  - if test $TRAVIS_PULL_REQUEST = "false" && test $TRAVIS_BRANCH = "master" ; then
+    ${TRAVIS_BUILD_DIR}/travis/version.sh ; fi
+
+branches:
+  only:
+  - master

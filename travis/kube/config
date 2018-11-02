@@ -1,0 +1,12 @@
+apiVersion: v1
+clusters:
+- cluster:
+    server: http://ansible-kube-master.localstack.local.dev:8080
+  name: travis
+contexts:
+- context:
+    cluster: travis
+  name: travis
+current-context: travis
+kind: Config
+preferences: {}

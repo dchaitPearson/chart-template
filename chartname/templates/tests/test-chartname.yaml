@@ -1,0 +1,17 @@
+#change this as required by chart you developing
+# refer https://github.com/helm/helm/blob/master/docs/chart_tests.md for creating tests 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ .Release.Name }}-chartname-test"
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+  - name: {{ .Release.Name }}-chartname-test
+    image: "815492460363.dkr.ecr.us-east-1.amazonaws.com/chart-chartname/chartname-test:latest"
+    {{- if eq .Values.pipeline "local"}}
+    imagePullPolicy: Never
+    {{- end }}
+    command: ["/app/test.sh"]
+  restartPolicy: Never
