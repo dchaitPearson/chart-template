@@ -8,10 +8,12 @@ metadata:
     "helm.sh/hook": test-success
 spec:
   containers:
-  - name: {{ .Release.Name }}-chartname-test
-    image: "815492460363.dkr.ecr.us-east-1.amazonaws.com/chart-chartname/chartname-test:latest"
+  - name: {{ .Release.Name }}-chartname-test 
     {{- if eq .Values.pipeline "local"}}
+    image: "chart-chartname/chartname-test:latest"
     imagePullPolicy: Never
-    {{- end }}
+    {{ else }}
+    image: "815492460363.dkr.ecr.us-east-1.amazonaws.com/chart-chartname/chartname-test:latest"
+    {{ end }}
     command: ["/app/test.sh"]
   restartPolicy: Never

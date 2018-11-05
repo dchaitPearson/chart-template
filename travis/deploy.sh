@@ -16,6 +16,7 @@ do
   cp ../Makefile ${repo}
   cp ../.travis.yml ${repo}
   cp version.sh ${repo}/travis
+  cp build_testimage.sh ${repo}/travis
   cp start_minikube.sh ${repo}/travis
   cp setup_ssh.sh ${repo}/travis
   cp install_dependencies.sh ${repo}/travis
