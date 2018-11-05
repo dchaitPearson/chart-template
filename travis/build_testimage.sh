@@ -12,13 +12,11 @@ then
 
 else
   
-  repocount=$(aws ecr describe-repositories --region=${ECR_AWS_REGION} --profile=${ECR_AWS_ACC_PROFILE} --repository-names chart-${CHART_NAME}/${CHART_NAME}-test | grep -i repositoryArn | wc -l)
+  #create repo if not exist
+  aws ecr describe-repositories --repository-names chart-${CHART_NAME}/${CHART_NAME}-test --region=${ECR_AWS_REGION} --profile=${ECR_AWS_ACC_PROFILE} || aws ecr create-repository --repository-name chart-${CHART_NAME}/${CHART_NAME}-test --region=${ECR_AWS_REGION} --profile=${ECR_AWS_ACC_PROFILE}
 
-  if [ $repocount == 0 ]
-  then
-    echo "creating ecr repository"
-    aws ecr create-repository --repository-name chart-${CHART_NAME}/${CHART_NAME}-test --region=${ECR_AWS_REGION} --profile=${ECR_AWS_ACC_PROFILE}
-  fi
+  # Set repository access permissions
+  aws ecr set-repository-policy --registry-id ${ECR_AWS_ACC_NUM} --repository-name chart-${CHART_NAME}/${CHART_NAME}-test --policy-text "$(cat ${PWD}/travis/ecr/policies/ecr-repo-policy-cross-account-pull.json)" --region=${ECR_AWS_REGION} --profile=${ECR_AWS_ACC_PROFILE}
 
   docker build tests -t ${ECR_AWS_ACC_NUM}.dkr.ecr.us-east-1.amazonaws.com/chart-${CHART_NAME}/${CHART_NAME}-test:latest
   docker push ${ECR_AWS_ACC_NUM}.dkr.ecr.us-east-1.amazonaws.com/chart-${CHART_NAME}/${CHART_NAME}-test:latest

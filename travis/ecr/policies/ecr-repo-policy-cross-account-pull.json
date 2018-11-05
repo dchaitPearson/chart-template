@@ -1,0 +1,21 @@
+{
+    "Version": "2008-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowCrossAccountPull",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": ["arn:aws:iam::602604727914:root", "arn:aws:iam::815492460363:root"]
+            },
+            "Action": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:GetRepositoryPolicy",
+                "ecr:DescribeRepositories",
+                "ecr:ListImages",
+                "ecr:DescribeImages",
+                "ecr:BatchGetImage"
+            ]
+        }
+    ]
+}

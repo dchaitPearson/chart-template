@@ -18,5 +18,6 @@ kubectl get nodes --show-labels
 echo "kubectl delete deployment kube-dns -n kube-system"
 kubectl delete deployment kube-dns -n kube-system
 kubectl delete sa kube-dns -n kube-system
+kubectl delete service kube-dns -n kube-system
 kubectl delete clusterroles system:kube-dns -n kube-system
 kubectl delete clusterrolebindings system:kube-dns -n kube-system

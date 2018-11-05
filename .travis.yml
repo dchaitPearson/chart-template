@@ -9,6 +9,9 @@ services:
 env:
   global:
     - REPO_NAME=$(echo ${TRAVIS_REPO_SLUG#*/})
+    - ECR_AWS_REGION=us-east-1
+    - ECR_NAMESPACE=bitesize
+    - ECR_AWS_ACC_NUM=815492460363
     - ECR_AWS_ACC_PROFILE=ecr_developer_bitesize_prd_access
     - DOCKER_CHANGE=$(git diff --name-only $TRAVIS_COMMIT_RANGE | grep -i ^tests/ | wc -l)
 

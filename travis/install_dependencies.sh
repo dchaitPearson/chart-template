@@ -49,6 +49,8 @@ sudo apt-get update && sudo apt-get install socat
 aws ssm get-parameters --names "github_rw_key" --region eu-west-1 --with-decryption | jq -r ".Parameters[0].Value" > ~/.ssh/id_rsa
 echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 chmod 600 ~/.ssh/id_rsa
+aws secretsmanager get-secret-value --secret-id aws-profile-config/travis/assume-role/ecr_developer_bitesize_prd_access --region=us-east-1 | jq -r .SecretString > ~/.aws/config
+env
 
 
 
