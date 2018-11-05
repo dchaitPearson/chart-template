@@ -37,7 +37,7 @@ curl -Lo minikube ${minikube_install_url} && chmod +x minikube && sudo cp miniku
 curl -Lo kubectl ${kubectl_install_url} && chmod +x kubectl && sudo cp kubectl /usr/local/bin/ && rm kubectl
 
 #pip install ansible awscli
-pip install awscli
+pip install awscli aws-role-credentials boto3
 
 #install nsenter
 docker run -v /usr/local/bin:/target jpetazzo/nsenter
@@ -51,7 +51,6 @@ echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 chmod 600 ~/.ssh/id_rsa
 aws secretsmanager get-secret-value --secret-id aws-profile-config/travis/assume-role/ecr_developer_bitesize_prd_access --region=us-east-1 | jq -r .SecretString > ~/.aws/config
 env
-
 
 
 

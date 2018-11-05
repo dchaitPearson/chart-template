@@ -13,7 +13,7 @@ spec:
     image: "chart-chartname/chartname-test:latest"
     imagePullPolicy: Never
     {{ else }}
-    image: "815492460363.dkr.ecr.us-east-1.amazonaws.com/chart-chartname/chartname-test:latest"
+    image: "815492460363.dkr.ecr.us-east-1.amazonaws.com/bitesize/chart-chartname-test:latest"
     {{ end }}
     command: ["/app/test.sh"]
   restartPolicy: Never
