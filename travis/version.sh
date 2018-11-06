@@ -8,7 +8,7 @@ set -x
 eval `ssh-agent -s` && ssh-add ~/.ssh/id_rsa
 
 CHART_NAME=$(travis/script/get_chartname.sh)
-CHART_VERSION=1.0
+CHART_VERSION=1.0.0
 
 # Tag Github repo with version prefix from version.txt and semver patch + 1
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -25,5 +25,5 @@ git push --tags
 
 helm plugin install https://github.com/hypnoglow/helm-s3.git
 AWS_DEFAULT_REGION=us-west-2 helm repo add s3repo s3://bitesize-helm-registry/charts
-helm package ../$CHART_NAME --version $VERSION_TAG
+helm package $CHART_NAME --version $VERSION_TAG
 AWS_DEFAULT_REGION=us-west-2 helm s3 push ${CHART_NAME}-${VERSION_TAG}.tgz s3repo

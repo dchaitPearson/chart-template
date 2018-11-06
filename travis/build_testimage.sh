@@ -4,6 +4,7 @@ set -e
 
 
 CHART_NAME=$(travis/script/get_chartname.sh)
+source $(pwd)/travis/ecr/minikube-login.sh
 
 if [ $PIPELINE == "local" ]
 then
@@ -17,7 +18,12 @@ else
 
   # Set repository access permissions
   aws ecr set-repository-policy --registry-id ${ECR_AWS_ACC_NUM} --repository-name bitesize/chart-${CHART_NAME}-test --policy-text "$(cat ${PWD}/travis/ecr/policies/ecr-repo-policy-cross-account-pull.json)" --region=${ECR_AWS_REGION} --profile=${ECR_AWS_ACC_PROFILE}
-
+  
+  #login
+  set +x
+  eval $(aws ecr get-login --no-include-email --registry-ids ${ECR_AWS_ACC_NUM} --region=${ECR_AWS_REGION} --profile=${ECR_AWS_ACC_PROFILE})
+  set -x
+  
   docker build tests -t ${ECR_AWS_ACC_NUM}.dkr.ecr.us-east-1.amazonaws.com/bitesize/chart-${CHART_NAME}-test:latest
   docker push ${ECR_AWS_ACC_NUM}.dkr.ecr.us-east-1.amazonaws.com/bitesize/chart-${CHART_NAME}-test:latest
 fi
