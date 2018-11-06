@@ -12,10 +12,10 @@ CHART_VERSION=1.0.0
 
 # Tag Github repo with version prefix from version.txt and semver patch + 1
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-prefix=$CHART_VERSION
+prefix=1.0
 latest_tag=$(git ls-remote --tags origin | cut -f 3 -d '/' | grep "^${prefix}" | sort -t. -k 3,3nr | head -1)
 if [ -z ${latest_tag} ]; then
-  VERSION_TAG="${prefix}"
+  VERSION_TAG="${CHART_VERSION}"
 else
   VERSION_TAG="${latest_tag%.*}.$((${latest_tag##*.}+1))"
 fi
