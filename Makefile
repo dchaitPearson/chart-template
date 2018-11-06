@@ -1,3 +1,5 @@
+# WARNING: This file is deployed from template. Raise a pull request against chart-template to change.
+
 SHELL := /bin/bash
 IMAGE := $(notdir $(CURDIR))
 DOMAIN := .localstack.local

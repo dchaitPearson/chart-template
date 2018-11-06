@@ -1,4 +1,5 @@
 #!/bin/bash
+# WARNING: This file is deployed from template. Raise a pull request against chart-template to change.
 
 kubernetes_version=${1:-v1.10.9}
 

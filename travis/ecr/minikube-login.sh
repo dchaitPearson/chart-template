@@ -1,4 +1,5 @@
 #!/bin/bash
+# WARNING: This file is deployed from template. Raise a pull request against chart-template to change.
 
 if [ -z "${AWS_PROFILE}" ] || [ "${AWS_PROFILE}" == '' ]; then
   ECR_AWS_PROFILE="default"

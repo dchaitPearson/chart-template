@@ -1,1 +1,8 @@
+# WARNING: This file is deployed from template. Raise a pull request against chart-template to change.
+
+.virtualenv/
+inspec.lock
+.idea/
+travis/credentials
+travis/github_ro_key
 tests/__snapshot__/

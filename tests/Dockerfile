@@ -6,6 +6,7 @@ RUN yum update -y && yum install curl -y &&\
     curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.5.6/bin/linux/amd64/kubectl &&\
     chmod +x ./kubectl &&\
     mv ./kubectl /usr/local/bin/kubectl &&\
-    yum clean all
+    yum clean all &&\
+    rm -rf /var/cache/yum
 
 COPY test.sh /app/
