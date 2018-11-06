@@ -4,7 +4,6 @@ set -e
 
 
 CHART_NAME=$(travis/script/get_chartname.sh)
-source $(pwd)/travis/ecr/minikube-login.sh
 
 if [ $PIPELINE == "local" ]
 then
