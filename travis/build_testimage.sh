@@ -8,6 +8,7 @@ CHART_NAME=$(travis/script/get_chartname.sh)
 if [ $PIPELINE == "local" ]
 then
   echo "image pushing not required"
+  eval $(aws ecr get-login --no-include-email --registry-ids 815492460363 --region=us-east-1)
   docker build tests -t chart-${CHART_NAME}/${CHART_NAME}-test:latest
 
 else

@@ -3,11 +3,11 @@
 #test steps goes here(can use any testing framework)
 kubectl get pods -n kube-system
 
-svcip=$(kubectl get svc kube-dns -n kube-system -o json | jq .spec.clusterIP)
+ns=$(kubectl get ns | grep -i test | wc -l)
 
-if [ $svcip = '"10.96.0.2"' ]; then
-  echo "svc-ip test : PASS"
+if [ $ns = '1' ]; then
+  echo "ns test : PASS"
 else
-  echo "svc-ip tests : FAIL"
+  echo "ns test : FAIL"
   exit 1
 fi

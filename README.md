@@ -22,7 +22,7 @@ Your project is now ready for you to work on.
 
 ### Notes
 
-- change `chartname` folder to the name of your chart and work on creating templates inside template folder.
+- change `template` folder to the name of your chart and work on creating templates inside templates folder(In this case name of the chart is template).
 
 - change Chart.yaml and values.yaml with the chart you are working on.
 
