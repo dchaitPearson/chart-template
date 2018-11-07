@@ -1,1 +1,3 @@
 chart-kubedns
+chart-aws-es-proxy
+chart-quota
