@@ -26,4 +26,4 @@ git push --tags
 helm plugin install https://github.com/hypnoglow/helm-s3.git
 AWS_DEFAULT_REGION=us-west-2 helm repo add s3repo s3://bitesize-helm-registry/charts
 helm package $CHART_NAME --version $VERSION_TAG
-AWS_DEFAULT_REGION=us-west-2 helm s3 push ${CHART_NAME}-${VERSION_TAG}.tgz s3repo
+AWS_DEFAULT_REGION=us-west-2 helm s3 push --acl="bucket-owner-full-control" ${CHART_NAME}-${VERSION_TAG}.tgz s3repo
