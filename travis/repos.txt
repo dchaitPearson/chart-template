@@ -1,3 +1,6 @@
 chart-kubedns
 chart-es-proxy
 chart-quota
+chart-jaeger
+chart-fluentd
+chart-grafana
