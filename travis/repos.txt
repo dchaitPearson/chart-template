@@ -1,5 +1,6 @@
 chart-calico
 chart-kubedns
+chart-efs-provisioner
 chart-es-proxy
 chart-quota
 chart-jaeger
