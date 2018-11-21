@@ -21,6 +21,7 @@ do
   cp setup_ssh.sh ${repo}/travis
   cp install_dependencies.sh ${repo}/travis
   cp ../README.md ${repo}
+  # (cd ${repo}/travis && ./travis_rw_key.sh) # Uncomment to run after rotating travis_rw_key in SSM
   (cd ${repo} && git status && git add . && git commit . -m "Update from chart-template repo: ${IMAGE_TEMPLATE_LAST_COMMIT}" || true && git push origin master)
   echo -e "FINISHED UPDATING ${repo}\n"
 done
