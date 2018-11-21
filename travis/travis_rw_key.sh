@@ -8,7 +8,7 @@ set -x
 
 aws ssm get-parameters \
     --region=eu-west-1 \
-    --names "travis_rw_key:7" \
+    --names "travis_rw_key:9" \
     --with-decryption \
     --output json \
 	| jq -r ".Parameters[0].Value" > credentials
