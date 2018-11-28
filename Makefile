@@ -9,7 +9,8 @@ GITHUB_RO_KEY := $(shell aws ssm get-parameters --names "github_ro_key" --region
 DOCKER_LOGIN := $(shell aws ecr get-login --no-include-email --region us-east-1)
 
 CHART_NAME = $(shell travis/script/get_chartname.sh)
-CHART_PACKAGE = "$(CHART_NAME)-1.0.0-dev.tgz"
+CHART_VERSION = $(shell travis/script/get_chartversion.sh)
+CHART_PACKAGE = "$(CHART_NAME)-$(CHART_VERSION)-dev.tgz"
 
 ifneq ($(TRAVIS),)
     DOCKER_IP := $(shell ip addr show docker0 | grep 'inet\b' | awk '{print $$2}' | cut -d/ -f1)
@@ -47,7 +48,7 @@ build:  ## building helm chart
 	@echo "Building Helm chart"
 	@bash -c "helm init"
 	sleep 30
-	@bash -c "helm package $(CHART_NAME) --version 1.0.0-dev"
+	@bash -c "helm package $(CHART_NAME) --version $(CHART_VERSION)-dev"
 
 
 

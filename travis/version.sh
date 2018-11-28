@@ -8,7 +8,7 @@ set -x
 eval `ssh-agent -s` && ssh-add ~/.ssh/id_rsa
 
 CHART_NAME=$(travis/script/get_chartname.sh)
-CHART_VERSION=1.0.0
+CHART_VERSION=$(travis/script/get_chartversion.sh)
 
 # Tag Github repo with version prefix from version.txt and semver patch + 1
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
