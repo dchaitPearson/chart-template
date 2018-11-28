@@ -64,4 +64,4 @@ config:  ## test kubedns
 
 
 .DEFAULT_GOAL := all
-.PHONY: build run config 
+.PHONY: build run config
